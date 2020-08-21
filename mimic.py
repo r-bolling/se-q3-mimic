@@ -72,23 +72,16 @@ def print_mimic_random(mimic_dict, num_words):
         - Randomly select a new word from the next-list
         - Repeat this process num_words times
     """
-    # +++your code here+++
     i = 0
-    count_dict = []
+    current_key = ''
     while i < num_words:
-        if i >= num_words:
-            break
-        for key, value in mimic_dict.items():
-            if i == 0:
-                print('', random.choice(mimic_dict['']), ' ', end='')
-                i += 1
-            elif i < num_words:
-                test = random.choice(value)
-                print(random.choice(value), ' ', end='')
-                # count_dict.append(key)
-                count_dict.append(random.choice(value))
-                i += 1
-    finalnum = len(count_dict)
+        print(current_key, ' ', end='')
+        if current_key != '':
+            i += 1
+        try:
+            current_key = random.choice(mimic_dict[current_key])
+        except KeyError:
+            current_key = ''
     pass
 
 
