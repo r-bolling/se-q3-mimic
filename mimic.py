@@ -72,7 +72,7 @@ def print_mimic_random(mimic_dict, num_words):
     i = 0
     current_key = ''
     while i < num_words:
-        print(current_key, ' ', end='')
+        print(current_key, end=' ')
         if current_key != '':
             i += 1
         try:
