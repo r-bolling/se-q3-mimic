@@ -20,7 +20,7 @@ You can try adding in line breaks around 70 columns so the output looks
 better.
 """
 
-__author__ = "???"
+__author__ = "r-bolling with help from Kenzie Academy lessons and https://realpython.com/python-keyerror/ for KeyError assistance"
 
 
 import random
@@ -45,8 +45,19 @@ def create_mimic_dict(filename):
                 "who" : ["knows"]
             }
     """
-    # +++your code here+++
-    pass
+    with open(filename, 'r') as contents:
+        words = contents.read().split()
+        words_dict = {}
+        i = 0
+        current_key = ''
+        while i < len(words):
+            if words_dict.get(current_key):
+                words_dict[current_key].append(words[i])
+            else:
+                words_dict[current_key] = [words[i]]
+            current_key = words[i]
+            i += 1
+    return words_dict 
 
 
 def print_mimic_random(mimic_dict, num_words):
@@ -58,7 +69,16 @@ def print_mimic_random(mimic_dict, num_words):
         - Randomly select a new word from the next-list
         - Repeat this process num_words times
     """
-    # +++your code here+++
+    i = 0
+    current_key = ''
+    while i < num_words:
+        print(current_key, end=' ')
+        if current_key != '':
+            i += 1
+        try:
+            current_key = random.choice(mimic_dict[current_key])
+        except KeyError:
+            current_key = ''
     pass
 
 
