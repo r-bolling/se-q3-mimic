@@ -45,21 +45,18 @@ def create_mimic_dict(filename):
                 "who" : ["knows"]
             }
     """
-    # +++your code here+++
-    contents = open(filename, 'r')
-    words = contents.read().split()
-    words_dict = {}
-    i = 0
-    while i < len(words):
-        if words_dict == {}:
-            words_dict[''] = [words[i]]
-        elif words_dict.get(words[i - 1]):
-            words_dict[words[i - 1]].append(words[i])
-        else:
-            words_dict[words[i - 1]] = [words[i]]
-        i += 1
-    contents.close()
-    pass
+    with open(filename, 'r') as contents:
+        words = contents.read().split()
+        words_dict = {}
+        i = 0
+        current_key = ''
+        while i < len(words):
+            if words_dict.get(current_key):
+                words_dict[current_key].append(words[i])
+            else:
+                words_dict[current_key] = [words[i]]
+            current_key = words[i]
+            i += 1
     return words_dict 
 
 
